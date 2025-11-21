@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "WBS/WBS.md",
+                "file": "워크 플로우/워크 플로우.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "WBS"
+              "title": "워크 플로우"
             }
           }
         ]
@@ -186,13 +186,15 @@
   },
   "active": "9766db11bb2dfd30",
   "lastOpenFiles": [
+    "WBS/WBS.md",
+    "워크 플로우/워크 플로우.md",
+    "워크 플로우",
     "ERD/ERD.md",
     "기능 요구 사항/AI 추천 서비스 (MVP).md",
     "기능 요구 사항/AI 추천 서비스.md",
     "기능 요구 사항/기능 요구 사항.md",
     "기능 요구 사항/리뷰 및 평가 시스템.md",
     "기능 요구 사항/리뷰 및 평가 시스템 (MVP).md",
-    "WBS/WBS.md",
     "기능 요구 사항/지도 및 위치 기반 서비스.md",
     "WBS",
     "기능 요구 사항/플랜 및 일정 관리.md",
