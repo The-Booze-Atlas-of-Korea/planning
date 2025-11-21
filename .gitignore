@@ -1,0 +1,54 @@
+# ----------------------------
+# OS / 편집기 잡파일
+# ----------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+Icon?
+._*
+*~
+*.swp
+*.tmp
+~$*
+.vscode/
+.idea/
+
+# ----------------------------
+# Obsidian 전용
+# ----------------------------
+# 레이아웃/장치별 상태
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/graph.json
+
+# 캐시
+.obsidian/cache/
+.obsidian/**/.cache/
+
+# 플러그인 런타임/의존성 (설정 동기화는 원하면 제외 해제)
+.obsidian/plugins/**/data.json
+.obsidian/plugins/**/node_modules/
+.obsidian/plugins/**/package-lock.json
+.obsidian/plugins/**/yarn.lock
+.obsidian/plugins/**/dist/
+.obsidian/plugins/**/build/
+
+# 개인 테마/스니펫(개인화 요소라 보통 제외; 공유 원하면 주석 처리)
+.obsidian/appearance.json
+.obsidian/snippets/
+.obsidian/themes/
+
+# 로컬 휴지통/백업(있을 때)
+.trash/
+.obsidian/backup/
+.obsidian/undo/
+
+# ----------------------------
+# 산출물(원하면 주석 처리)
+# ----------------------------
+*.pdf
+*.docx
+*.pptx
+*.zip
+*.tar
+*.7z
