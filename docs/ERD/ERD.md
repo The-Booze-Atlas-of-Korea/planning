@@ -1,9 +1,6 @@
 ```mermaid
 erDiagram
     %% === 사용자 관련 ===
-    USERS ||--o{ OAUTH_ACCOUNTS : has
-    USERS ||--o{ FRIENDSHIPS : requests
-    USERS ||--o{ FRIENDSHIPS : receives
     USERS ||--o{ VISITS : has
     USERS ||--o{ REVIEWS : writes
     USERS ||--o{ MEMOS : writes
@@ -15,9 +12,6 @@ erDiagram
     USERS ||--o{ REVIEW_LIKES : likes
     USERS ||--o{ REVIEW_REPORTS : reports
     USERS ||--o{ RECOMMENDATION_HISTORY : getsRecommendations
-
-    %% === 친구 ===
-    FRIENDSHIPS
 
     %% === 방문/선호도 ===
     VISITS ||--o{ REVIEWS : mayHave
@@ -73,6 +67,7 @@ erDiagram
 
 
 
+
 ## 0. 공통 컬럼 베이스
 
 대부분 “주요 엔티티 테이블”에 공통으로 들어갈 컬럼들:
@@ -122,30 +117,20 @@ erDiagram
 
 ---
 
-### 1-3. FRIENDSHIPS (친구 관계)
+### 1-3. VISITS (방문 이력)
 
-|컬럼명|타입|NOT NULL|설명|
-|---|---|---|---|
-|requester_id|BIGINT FK|Y|친구 요청 보낸 유저 (users.id)|
-|addressee_id|BIGINT FK|Y|친구 요청 받은 유저 (users.id)|
-|status|VARCHAR(20)|Y|PENDING/ACCEPTED/REJECTED/BLOCKED|
-
----
-
-### 1-4. VISITS (방문 이력)
-
-|컬럼명|타입|NOT NULL|설명|
-|---|---|---|---|
-|user_id|BIGINT FK|Y|방문한 유저 (users.id)|
-|bar_id|BIGINT FK|Y|방문한 술집 (bars.id)|
-|visited_at|DATETIME|Y|방문 시각|
-|people_count|INT|N|함께 간 인원 수|
-|phase|INT|N|1,2,3… (1차/2차/3차 등 단계)|
-|visibility|VARCHAR(20)|Y|PUBLIC/FRIENDS/PRIVATE (공개 범위)|
+| 컬럼명          | 타입          | NOT NULL | 설명                             |
+| ------------ | ----------- | -------- | ------------------------------ |
+| user_id      | BIGINT FK   | Y        | 방문한 유저 (users.id)              |
+| bar_id       | BIGINT FK   | Y        | 방문한 술집 (bars.id)               |
+| visited_at   | DATETIME    | Y        | 방문 시각                          |
+| people_count | INT         | N        | 함께 간 인원 수                      |
+| phase        | INT         | N        | 1,2,3… (1차/2차/3차 등 단계)         |
+| visibility   | VARCHAR(20) | Y        | PUBLIC/FRIENDS/PRIVATE (공개 범위) |
 
 ---
 
-### 1-5. USER_PREFERENCE_PROFILES (선호도 프로파일)
+### 1-4. USER_PREFERENCE_PROFILES (선호도 프로파일)
 
 |컬럼명|타입|NOT NULL|설명|
 |---|---|---|---|
