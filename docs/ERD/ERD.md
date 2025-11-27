@@ -1,44 +1,75 @@
 ```mermaid
 erDiagram
+    %% === 사용자 관련 ===
+    USERS ||--o{ OAUTH_ACCOUNTS : has
+    USERS ||--o{ FRIENDSHIPS : requests
+    USERS ||--o{ FRIENDSHIPS : receives
     USERS ||--o{ VISITS : has
     USERS ||--o{ REVIEWS : writes
     USERS ||--o{ MEMOS : writes
     USERS ||--o{ USER_PREFERENCE_PROFILES : has
     USERS ||--o{ PARTY_PLANS : owns
     USERS ||--o{ PARTY_PLAN_MEMBERS : joins
+    USERS ||--o{ PLAN_VOTES : votes
     USERS ||--o{ SCHEDULES : owns
-    USERS ||--o{ FRIENDSHIPS : requests
-    USERS ||--o{ GROUPS : owns
-    USERS ||--o{ GROUP_MEMBERS : joins
-    USERS ||--o{ GROUP_INVITES : sends
-    USERS ||--o{ CHANNEL_MESSAGES : sends
     USERS ||--o{ REVIEW_LIKES : likes
     USERS ||--o{ REVIEW_REPORTS : reports
+    USERS ||--o{ RECOMMENDATION_HISTORY : getsRecommendations
 
-    BARS ||--o{ VISITS : visited_in
-    BARS ||--o{ REVIEWS : reviewed_in
-    BARS ||--o{ MEMOS : memo_for
-    BARS ||--o{ PARTY_PLAN_STOPS : appears_in
-    BARS ||--o{ BAR_CATEGORY_MAPPING : classified_as
+    %% === 친구 ===
+    FRIENDSHIPS
 
-    BAR_CATEGORIES ||--o{ BAR_CATEGORY_MAPPING : used_for
+    %% === 방문/선호도 ===
+    VISITS ||--o{ REVIEWS : mayHave
+    USERS ||--o{ VISITS : visits
+    USERS ||--o{ USER_PREFERENCE_PROFILES : profile
 
-    VISITS ||--o{ REVIEWS : may_have
+    USER_PREFERENCE_PROFILES
 
+    %% === 술집 / 카테고리 ===
+    BARS ||--o{ VISITS : visitedIn
+    BARS ||--o{ REVIEWS : reviewedIn
+    BARS ||--o{ MEMOS : memoFor
+    BARS ||--o{ PARTY_PLAN_STOPS : appearsIn
+    BARS ||--o{ BAR_CATEGORY_MAPPING : classifiedAs
+    BARS ||--o{ RECOMMENDATION_HISTORY : recommendedAs
+
+    BAR_CATEGORIES ||--o{ BAR_CATEGORY_MAPPING : usedFor
+
+    %% === 리뷰 도메인 ===
     REVIEWS ||--o{ REVIEW_MEDIA : has
-    REVIEWS ||--o{ REVIEW_LIKES : liked_by
-    REVIEWS ||--o{ REVIEW_REPORTS : reported_by
+    REVIEWS ||--o{ REVIEW_LIKES : likedBy
+    REVIEWS ||--o{ REVIEW_REPORTS : reportedBy
 
-    PARTY_PLANS ||--o{ PARTY_PLAN_STOPS : contains
+    REVIEW_MEDIA
+    REVIEW_LIKES
+    REVIEW_REPORTS
+    MEMOS
+
+    %% === 플랜 / 코스 ===
+    PARTY_PLANS ||--o{ PARTY_PLAN_STOPS : consistsOf
     PARTY_PLANS ||--o{ PARTY_PLAN_MEMBERS : participants
-    PARTY_PLANS ||--o{ SCHEDULES : scheduled_as
+    PARTY_PLANS ||--o{ PLAN_VOTES : hasVotes
+    PARTY_PLANS ||--o{ SCHEDULES : scheduledAs
 
-    GROUPS ||--o{ GROUP_MEMBERS : includes
-    GROUPS ||--o{ GROUP_INVITES : issues
-    GROUPS ||--o{ CHANNELS : has
+    PARTY_PLAN_STOPS
+    PARTY_PLAN_MEMBERS
+    PLAN_VOTES
 
-    CHANNELS ||--o{ CHANNEL_MESSAGES : contains
+    %% === 일정 / 캘린더 ===
+    SCHEDULES ||--o{ SCHEDULE_NOTIFICATIONS : hasNotifications
+
+    CALENDARS ||--o{ CALENDAR_SHARES : sharedWith
+    CALENDARS ||--o{ SCHEDULES : contains
+
+    SCHEDULE_NOTIFICATIONS
+    CALENDARS
+    CALENDAR_SHARES
+
+    %% === AI 추천 로그(옵션) ===
+    RECOMMENDATION_HISTORY
 ```
+
 
 
 
@@ -317,68 +348,9 @@ erDiagram
 
 ---
 
-## 5. 소셜(그룹/채널/채팅) – 최소 구조
+## 5. AI 추천 로그 (선택)
 
-### 5-1. GROUPS
-
-|컬럼명|타입|NOT NULL|설명|
-|---|---|---|---|
-|name|VARCHAR|Y|그룹 이름|
-|owner_id|BIGINT FK|Y|그룹 생성자 (users.id)|
-|description|TEXT|N|그룹 설명|
-|status|VARCHAR(20)|Y|ACTIVE/CLOSED 등|
-
-### 5-2. GROUP_MEMBERS
-
-|컬럼명|타입|NOT NULL|설명|
-|---|---|---|---|
-|group_id|BIGINT FK|Y|그룹 (groups.id)|
-|user_id|BIGINT FK|Y|멤버 (users.id)|
-|role|VARCHAR(20)|Y|OWNER/ADMIN/MEMBER|
-|joined_at|DATETIME|Y|가입 시각|
-
-> PK `(group_id, user_id)`.
-
-### 5-3. GROUP_INVITES
-
-|컬럼명|타입|NOT NULL|설명|
-|---|---|---|---|
-|group_id|BIGINT FK|Y|그룹 (groups.id)|
-|inviter_id|BIGINT FK|Y|초대한 사람 (users.id)|
-|invite_code|VARCHAR|Y|초대 URL 토큰|
-|expires_at|DATETIME|N|만료 시각|
-|max_uses|INT|N|최대 사용 횟수|
-|used_count|INT|N|실제 사용 횟수|
-
----
-
-### 5-4. CHANNELS
-
-|컬럼명|타입|NOT NULL|설명|
-|---|---|---|---|
-|group_id|BIGINT FK|Y|소속 그룹 (groups.id)|
-|name|VARCHAR|Y|채널 이름|
-|type|VARCHAR(20)|Y|GENERAL/PLAN/EVENT 등|
-|party_plan_id|BIGINT FK|N|특정 플랜용 채널일 경우 (party_plans.id)|
-|schedule_id|BIGINT FK|N|특정 일정 채널일 경우 (schedules.id)|
-|is_default|BOOLEAN|N|그룹 생성 시 기본 채널 여부|
-
----
-
-### 5-5. CHANNEL_MESSAGES
-
-|컬럼명|타입|NOT NULL|설명|
-|---|---|---|---|
-|channel_id|BIGINT FK|Y|채널 (channels.id)|
-|sender_id|BIGINT FK|Y|보낸 사람 (users.id)|
-|content|TEXT|Y|메시지 내용|
-|sent_at|DATETIME|Y|전송 시각|
-
----
-
-## 6. AI 추천 로그 (선택)
-
-### 6-1. RECOMMENDATION_HISTORY (옵션)
+### 5-1. RECOMMENDATION_HISTORY (옵션)
 
 |컬럼명|타입|NOT NULL|설명|
 |---|---|---|---|
