@@ -9,7 +9,7 @@ mermaid.registerLayoutLoaders(elkLayouts);
 mermaid.initialize({
   startOnLoad: false,
   securityLevel: 'loose',
-  // layout: 'elk',  // 전역 기본을 elk로 하고 싶으면 주석 해제
+  layout: 'elk',  // 전역 기본을 elk로 하고 싶으면 주석 해제
 });
 
 // 중요: MkDocs Material이 이 인스턴스를 쓰도록 전역에 올리기
