@@ -1,5 +1,5 @@
 # url
-https://thsdmfwns.github.io/ssafy_final_passproject_planning/
+[mkdocs](https://the-booze-atlas-of-korea.github.io/)
 
 # member
 
