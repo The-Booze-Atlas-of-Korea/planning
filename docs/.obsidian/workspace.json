@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ERD/Conceptual Model ERD.md",
-                "mode": "source",
+                "file": "ERD/Physical Model/사용자 관리 기능.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Conceptual Model ERD"
+              "title": "사용자 관리 기능"
             }
           }
         ]
@@ -186,9 +186,9 @@
   },
   "active": "9766db11bb2dfd30",
   "lastOpenFiles": [
+    "ERD/Conceptual Model ERD.md",
     "ERD/Physical Model/사용자 관리 기능.md",
     "ERD/Logical Model ERD.md",
-    "ERD/Conceptual Model ERD.md",
     "ERD/Physical Model",
     "기능 요구 사항/MVP/사용자 관리 기능 (MVP).md",
     "기능 요구 사항/기능 요구 사항(MVP).md",
