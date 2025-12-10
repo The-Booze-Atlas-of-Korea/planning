@@ -1,0 +1,3333 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%20%EC%82%AC%ED%95%AD/NotUse/%EC%86%8C%EC%85%9C%20%EA%B8%B0%EB%8A%A5/">
+      
+      
+        <link rel="next" href="../../%EC%9B%8C%ED%81%AC%20%ED%94%8C%EB%A1%9C%EC%9A%B0/%EC%9B%8C%ED%81%AC%20%ED%94%8C%EB%A1%9C%EC%9A%B0/">
+      
+      
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>백엔드 레이어 구조 & 패키지 컨벤션 - 파이널 관통프로젝트 기획</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/panzoom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <meta name="panzoom-theme" content="material">
+<meta name="panzoom-data" content='{"selectors": [".d2", "img", ".mermaid"], "initial_zoom_level": 1.0}'> </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="brown" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="파이널 관통프로젝트 기획" class="md-header__button md-logo" aria-label="파이널 관통프로젝트 기획" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            파이널 관통프로젝트 기획
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              백엔드 레이어 구조 &amp; 패키지 컨벤션
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="brown" data-md-color-accent="amber"  aria-label="다크 모드로 전환"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="다크 모드로 전환" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="amber"  aria-label="라이트 모드로 전환"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="라이트 모드로 전환" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="파이널 관통프로젝트 기획" class="md-nav__button md-logo" aria-label="파이널 관통프로젝트 기획" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    파이널 관통프로젝트 기획
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ERD
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    ERD
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ERD/Conceptual%20Model%20ERD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Conceptual Model ERD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ERD/Logical%20Model%20ERD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logical Model ERD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Physical Model
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Physical Model
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ERD/Physical%20Model/%EC%82%AC%EC%9A%A9%EC%9E%90%20%EA%B4%80%EB%A6%AC%20%EA%B8%B0%EB%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    사용자 관리 기능
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WBS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    WBS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../WBS/WBS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WBS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Api
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Api
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/api%20%EB%AA%85%EC%84%B8%EC%84%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Api 명세서
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/auth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Auth API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/users/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/%EC%A0%95%EA%B7%9C%EC%8B%9D/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    정규식
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Design
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/design/%EC%9D%B8%EC%A6%9D%20%26%20%EC%82%AC%EC%9A%A9%EC%9E%90%20API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    인증 &amp; 사용자 API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Blog
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../blog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Blog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Archive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    기능 요구 사항
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    기능 요구 사항
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%20%EC%82%AC%ED%95%AD/%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%20%EC%82%AC%ED%95%AD%28MVP%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    기능 요구 사항(MVP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%20%EC%82%AC%ED%95%AD/%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%20%EC%82%AC%ED%95%AD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    기능 요구 사항
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Default
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Default
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%20%EC%82%AC%ED%95%AD/Default/AI%20%EC%B6%94%EC%B2%9C%20%EC%84%9C%EB%B9%84%EC%8A%A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI 추천 서비스
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%20%EC%82%AC%ED%95%AD/Default/%EB%A6%AC%EB%B7%B0%20%EB%B0%8F%20%ED%8F%89%EA%B0%80%20%EC%8B%9C%EC%8A%A4%ED%85%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    리뷰 및 평가 시스템
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%20%EC%82%AC%ED%95%AD/Default/%EC%82%AC%EC%9A%A9%EC%9E%90%20%EA%B4%80%EB%A6%AC%20%EA%B8%B0%EB%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    사용자 관리 기능
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%20%EC%82%AC%ED%95%AD/Default/%EC%A7%80%EB%8F%84%20%EB%B0%8F%20%EC%9C%84%EC%B9%98%20%EA%B8%B0%EB%B0%98%20%EC%84%9C%EB%B9%84%EC%8A%A4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    지도 및 위치 기반 서비스
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%20%EC%82%AC%ED%95%AD/Default/%ED%94%8C%EB%9E%9C%20%EB%B0%8F%20%EC%9D%BC%EC%A0%95%20%EA%B4%80%EB%A6%AC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    플랜 및 일정 관리
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MVP
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MVP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%20%EC%82%AC%ED%95%AD/MVP/AI%20%EC%B6%94%EC%B2%9C%20%EC%84%9C%EB%B9%84%EC%8A%A4%20%28MVP%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI 추천 서비스 (MVP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%20%EC%82%AC%ED%95%AD/MVP/%EB%A6%AC%EB%B7%B0%20%EB%B0%8F%20%ED%8F%89%EA%B0%80%20%EC%8B%9C%EC%8A%A4%ED%85%9C%20%28MVP%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    리뷰 및 평가 시스템 (MVP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%20%EC%82%AC%ED%95%AD/MVP/%EC%82%AC%EC%9A%A9%EC%9E%90%20%EA%B4%80%EB%A6%AC%20%EA%B8%B0%EB%8A%A5%20%28MVP%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    사용자 관리 기능 (MVP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%20%EC%82%AC%ED%95%AD/MVP/%EC%A7%80%EB%8F%84%20%EB%B0%8F%20%EC%9C%84%EC%B9%98%20%EA%B8%B0%EB%B0%98%20%EC%84%9C%EB%B9%84%EC%8A%A4%28MVP%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    지도 및 위치 기반 서비스(MVP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%20%EC%82%AC%ED%95%AD/MVP/%ED%94%8C%EB%9E%9C%20%EB%B0%8F%20%EC%9D%BC%EC%A0%95%20%EA%B4%80%EB%A6%AC%28MVP%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    플랜 및 일정 관리(MVP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NotUse
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    NotUse
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%20%EC%82%AC%ED%95%AD/NotUse/%EC%86%8C%EC%85%9C%20%EA%B8%B0%EB%8A%A5%20%28MVP%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    소셜 기능 (MVP)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%EA%B8%B0%EB%8A%A5%20%EC%9A%94%EA%B5%AC%20%EC%82%AC%ED%95%AD/NotUse/%EC%86%8C%EC%85%9C%20%EA%B8%B0%EB%8A%A5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    소셜 기능
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    아키텍처
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    아키텍처
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    백엔드 레이어 구조 &amp; 패키지 컨벤션
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    백엔드 레이어 구조 &amp; 패키지 컨벤션
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. API 레이어
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. API 레이어">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-dto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 dto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 dto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        response
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-utils" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 utils
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. CORE 레이어
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. CORE 레이어">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-modelcommand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 model/command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-modelquery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 model/query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Model (도메인 모델)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-enums" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 enums
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 repository (인터페이스)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 service
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-infra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. INFRA 레이어
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. INFRA 레이어">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-external" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 external
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-mapper-mybatis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 mapper (MyBatis)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-model-entity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 model (Entity)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 repository (구현체)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 새 기능 추가 시 추천 작업 순서
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 네이밍 컨벤션 요약
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    워크 플로우
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    워크 플로우
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%EC%9B%8C%ED%81%AC%20%ED%94%8C%EB%A1%9C%EC%9A%B0/%EC%9B%8C%ED%81%AC%20%ED%94%8C%EB%A1%9C%EC%9A%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    워크 플로우
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    제안서
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    제안서
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%EC%A0%9C%EC%95%88%EC%84%9C/%EC%A0%9C%EC%95%88%EC%84%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AI 기반 술집 추천 서비스 프로젝트 제안서
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    화면정의서
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    화면정의서
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%ED%99%94%EB%A9%B4%EC%A0%95%EC%9D%98%EC%84%9C/%ED%99%94%EB%A9%B4%EC%A0%95%EC%9D%98%EC%84%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    화면정의서
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. API 레이어
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. API 레이어">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 controller
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-dto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 dto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 dto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        response
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 config
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-utils" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 utils
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-core" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. CORE 레이어
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. CORE 레이어">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-modelcommand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 model/command
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-modelquery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 model/query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Model (도메인 모델)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-enums" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 enums
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 repository (인터페이스)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 service
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-infra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. INFRA 레이어
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. INFRA 레이어">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-external" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 external
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-mapper-mybatis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 mapper (MyBatis)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-model-entity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 model (Entity)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 repository (구현체)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 새 기능 추가 시 추천 작업 순서
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 네이밍 컨벤션 요약
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">백엔드 레이어 구조 &amp; 패키지 컨벤션<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>전체 레이어 의존 방향(컴파일 기준)은 다음과 같다:</p>
+<div class="highlight"><pre><span></span><code>api   →   core   ←   infra
+</code></pre></div>
+<ul>
+<li>
+<p><strong>api</strong>: HTTP, 인증/인가, 요청/응답 변환</p>
+</li>
+<li>
+<p><strong>core</strong>: 도메인 모델, 비즈니스 규칙, 유즈케이스(Service), Repository 인터페이스</p>
+</li>
+<li>
+<p><strong>infra</strong>: DB, 외부 API, Redis, Elasticsearch 등 “구현체/어댑터” 계층</p>
+</li>
+</ul>
+<p>핵심 규칙:</p>
+<ul>
+<li>
+<p><code>api</code>는 <strong>core만 의존</strong>한다. (<code>infra</code> 직접 참조 금지)</p>
+</li>
+<li>
+<p><code>infra</code>는 <strong>core의 인터페이스를 구현</strong>한다. (<code>api</code> 직접 참조 금지)</p>
+</li>
+<li>
+<p><code>core</code>는 <strong>api / infra 둘 다 몰라야 한다.</strong></p>
+<ul>
+<li>DTO, Entity, Spring 어노테이션 등이 들어오면 안 됨.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="1-api">1. API 레이어<a class="headerlink" href="#1-api" title="Permanent link">&para;</a></h2>
+<p>패키지 예시:</p>
+<div class="highlight"><pre><span></span><code>com.ssafy.sulmap.api
+ ├─ controller
+ ├─ dto
+ │   ├─ request
+ │   └─ response
+ ├─ security
+ ├─ config
+ └─ utils
+</code></pre></div>
+<h3 id="11-controller">1.1 controller<a class="headerlink" href="#11-controller" title="Permanent link">&para;</a></h3>
+<p><strong>역할</strong></p>
+<ul>
+<li>
+<p><code>@RestController</code> 가 들어가는 HTTP 엔드포인트 계층</p>
+</li>
+<li>
+<p>Request DTO → Core Command/Query 변환</p>
+</li>
+<li>
+<p>Core Service 호출 → Result/Model → Response DTO 변환</p>
+</li>
+<li>
+<p>HTTP Status, 헤더, 쿠키, 세션 관리 등 <strong>웹 레이어 책임</strong></p>
+</li>
+</ul>
+<p><strong>가이드라인</strong></p>
+<ul>
+<li>
+<p>비즈니스 로직(if/for로 규칙 만들기)은 최대한 core(Service)로 내린다.</p>
+</li>
+<li>
+<p>예외/Result → HTTP 코드 변환 정도만 담당한다.</p>
+</li>
+</ul>
+<p><strong>예시</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@RestController</span>
+<span class="nd">@RequiredArgsConstructor</span>
+<span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/users&quot;</span><span class="p">)</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserController</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">UserService</span><span class="w"> </span><span class="n">userService</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@PatchMapping</span><span class="p">(</span><span class="s">&quot;/me&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="nf">updateUser</span><span class="p">(</span>
+<span class="w">            </span><span class="nd">@AuthenticationPrincipal</span><span class="w"> </span><span class="n">LoginUserDetail</span><span class="w"> </span><span class="n">userDetail</span><span class="p">,</span>
+<span class="w">            </span><span class="nd">@Valid</span><span class="w"> </span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">UpdateUserRequest</span><span class="w"> </span><span class="n">req</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">cmd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UpdateUserProfileCommand</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">userId</span><span class="p">(</span><span class="n">userDetail</span><span class="p">.</span><span class="na">getUserModel</span><span class="p">().</span><span class="na">getId</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">name</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="na">name</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">email</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="na">email</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">phone</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="na">phone</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">address</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="na">address</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">birthday</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="na">birthday</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">gender</span><span class="p">(</span><span class="n">UserGender</span><span class="p">.</span><span class="na">fromString</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="na">gender</span><span class="p">()))</span>
+<span class="w">                </span><span class="p">.</span><span class="na">profileImageUrl</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="na">profileImageUrl</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userService</span><span class="p">.</span><span class="na">updateUserProfile</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">isFailure</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">getSingleErrorOrThrow</span><span class="p">().</span><span class="na">getStatus</span><span class="p">());</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">ok</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="na">getOrThrow</span><span class="p">());</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="12-dto">1.2 dto<a class="headerlink" href="#12-dto" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>api/dto/request   // 클라이언트 → 서버 (입력)
+api/dto/response  // 서버 → 클라이언트 (출력)
+</code></pre></div>
+<h4 id="request">request<a class="headerlink" href="#request" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>HTTP Body / PathVariable / QueryParam 을 담는 <strong>입력용 DTO</strong></p>
+</li>
+<li>
+<p><strong><code>record</code> 사용 추천</strong> (불변 + 간결 + null-safe)</p>
+</li>
+<li>
+<p><code>jakarta.validation</code> 으로 API 레벨 필수값 검증</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">UpdateUserRequest</span><span class="p">(</span>
+<span class="w">    </span><span class="nd">@NotBlank</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span>
+<span class="w">    </span><span class="nd">@Email</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">phone</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">address</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">birthday</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">profileImageUrl</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+</code></pre></div>
+<h4 id="response">response<a class="headerlink" href="#response" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>API 응답 포맷 정의</p>
+</li>
+<li>
+<p>프론트 요구사항에 맞는 필드만 노출</p>
+</li>
+<li>
+<p>도메인 모델 전체를 그대로 노출하지 않고 필요한 정보만 선택</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">GetUserResponse</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">profileImageUrl</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">GetUserResponse</span><span class="w"> </span><span class="nf">fromModel</span><span class="p">(</span><span class="n">UserModel</span><span class="w"> </span><span class="n">model</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">GetUserResponse</span><span class="p">(</span>
+<span class="w">            </span><span class="n">model</span><span class="p">.</span><span class="na">getId</span><span class="p">(),</span>
+<span class="w">            </span><span class="n">model</span><span class="p">.</span><span class="na">getName</span><span class="p">(),</span>
+<span class="w">            </span><span class="n">model</span><span class="p">.</span><span class="na">getEmail</span><span class="p">(),</span>
+<span class="w">            </span><span class="n">model</span><span class="p">.</span><span class="na">getProfileImageUrl</span><span class="p">()</span>
+<span class="w">        </span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="13-security">1.3 security<a class="headerlink" href="#13-security" title="Permanent link">&para;</a></h3>
+<p><strong>역할</strong></p>
+<ul>
+<li>
+<p>Spring Security 관련 설정 및 구성요소</p>
+<ul>
+<li>
+<p><code>SecurityConfig</code></p>
+</li>
+<li>
+<p><code>UserDetails</code>, <code>UserDetailsService</code></p>
+</li>
+<li>
+<p>필터, 핸들러 등</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>예시 구조</strong></p>
+<div class="highlight"><pre><span></span><code>api/security
+ ├─ SecurityConfig.java
+ ├─ LoginUserDetail.java
+ ├─ LoginUserDetailsService.java
+ └─ filter / handler ...
+</code></pre></div>
+<p><strong>내용 예시</strong></p>
+<ul>
+<li>
+<p>세션/쿠키 기반 인증 설정</p>
+</li>
+<li>
+<p><code>/login</code>, <code>/logout</code>, <code>/users/**</code> 권한 규칙</p>
+</li>
+<li>
+<p><code>@AuthenticationPrincipal LoginUserDetail</code> 로 현재 로그인 유저 주입</p>
+</li>
+</ul>
+<hr />
+<h3 id="14-config">1.4 config<a class="headerlink" href="#14-config" title="Permanent link">&para;</a></h3>
+<p><strong>역할</strong></p>
+<ul>
+<li>
+<p>API 레이어에서 사용하는 Spring 설정 모음</p>
+<ul>
+<li>
+<p>Swagger/OpenAPI 설정</p>
+</li>
+<li>
+<p>CORS, MessageConverter, Locale 설정 등</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>예시</strong></p>
+<div class="highlight"><pre><span></span><code>api/config
+ ├─ SwaggerConfig.java
+ ├─ WebMvcConfig.java
+ └─ AppConfig.java
+</code></pre></div>
+<hr />
+<h3 id="15-utils">1.5 utils<a class="headerlink" href="#15-utils" title="Permanent link">&para;</a></h3>
+<p><strong>역할</strong></p>
+<ul>
+<li>
+<p>API 레이어에서만 사용하는 유틸리티 모음</p>
+<ul>
+<li>
+<p>Response wrapping</p>
+</li>
+<li>
+<p>Servlet 요청/응답 관련 헬퍼</p>
+</li>
+<li>
+<p>SecurityContext에서 로그인 유저 꺼내는 helper 등</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>주의</strong></p>
+<ul>
+<li>
+<p>비즈니스 로직, DB 로직은 절대 넣지 않는다.</p>
+</li>
+<li>
+<p>core/infra에서 필요하면 해당 레이어 전용 유틸을 따로 만든다.</p>
+</li>
+</ul>
+<hr />
+<h2 id="2-core">2. CORE 레이어<a class="headerlink" href="#2-core" title="Permanent link">&para;</a></h2>
+<p>패키지 예시:</p>
+<div class="highlight"><pre><span></span><code>com.ssafy.sulmap.core
+ ├─ model
+ │   ├─ command
+ │   ├─ query
+ │   └─ (domain)   // UserModel, BarModel 등
+ ├─ enums
+ ├─ repository
+ └─ service
+</code></pre></div>
+<h3 id="21-modelcommand">2.1 model/command<a class="headerlink" href="#21-modelcommand" title="Permanent link">&para;</a></h3>
+<p><strong>역할</strong></p>
+<ul>
+<li>
+<p>“쓰기/변경 계열” 유즈케이스의 입력 파라미터</p>
+</li>
+<li>
+<p>CRUD 기준으로 C, U, D 에 해당</p>
+</li>
+</ul>
+<p><strong>예시</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 회원 프로필 수정 Command</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">UpdateUserProfileCommand</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Long</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">phone</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">address</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Date</span><span class="w"> </span><span class="n">birthday</span><span class="p">,</span>
+<span class="w">    </span><span class="n">UserGender</span><span class="w"> </span><span class="n">gender</span><span class="p">,</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">profileImageUrl</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+</code></pre></div>
+<p>특징:</p>
+<ul>
+<li>
+<p>API Request DTO와 1:1일 필요는 없다.</p>
+</li>
+<li>
+<p>도메인에 맞는 타입/enum을 사용한다.</p>
+</li>
+</ul>
+<hr />
+<h3 id="22-modelquery">2.2 model/query<a class="headerlink" href="#22-modelquery" title="Permanent link">&para;</a></h3>
+<p><strong>역할</strong></p>
+<ul>
+<li>
+<p>“조회/검색 계열” 유즈케이스의 입력 조건</p>
+</li>
+<li>
+<p>검색 조건, 필터, 페이징 정보를 모아둔 모델</p>
+</li>
+</ul>
+<p><strong>예시</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">record</span> <span class="nc">SearchNearbyBarsQuery</span><span class="p">(</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">latitude</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">longitude</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">radiusMeters</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">page</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span>
+<span class="p">)</span><span class="w"> </span><span class="p">{}</span>
+</code></pre></div>
+<hr />
+<h3 id="23-model">2.3 Model (도메인 모델)<a class="headerlink" href="#23-model" title="Permanent link">&para;</a></h3>
+<p><strong>역할</strong></p>
+<ul>
+<li>
+<p>핵심 비즈니스 개념을 표현하는 모델</p>
+<ul>
+<li>예: <code>UserModel</code>, <code>BarModel</code>, <code>VisitHistoryModel</code> 등</li>
+</ul>
+</li>
+<li>
+<p>도메인 규칙을 메서드로 캡슐화</p>
+</li>
+</ul>
+<p><strong>규칙</strong></p>
+<ul>
+<li>
+<p>JPA/MyBatis 어노테이션 X</p>
+</li>
+<li>
+<p>Spring 어노테이션 X</p>
+</li>
+<li>
+<p>의미 있는 도메인 메서드를 제공 (<code>updateProfile</code>, <code>markDeleted</code> 등)</p>
+</li>
+</ul>
+<p><strong>예시</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Data</span>
+<span class="nd">@Builder</span>
+<span class="nd">@AllArgsConstructor</span>
+<span class="nd">@NoArgsConstructor</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserModel</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">loginId</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">passwordHash</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">phone</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">address</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="n">birthday</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UserGender</span><span class="w"> </span><span class="n">gender</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">profileImageUrl</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UserAuthProvider</span><span class="w"> </span><span class="n">authProvider</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">providerId</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UserStatus</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UserProfileVisitVisibility</span><span class="w"> </span><span class="n">visitVisibilitySetting</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="n">createdAt</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="n">updatedAt</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="n">deletedAt</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="n">lastLoginAt</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">changeVisitVisibility</span><span class="p">(</span><span class="n">UserProfileVisitVisibility</span><span class="w"> </span><span class="n">visibility</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">visitVisibilitySetting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">visibility</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">markDeleted</span><span class="p">(</span><span class="n">Date</span><span class="w"> </span><span class="n">now</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserStatus</span><span class="p">.</span><span class="na">DELETED</span><span class="p">;</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">deletedAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">now</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">markLoggedIn</span><span class="p">(</span><span class="n">Date</span><span class="w"> </span><span class="n">now</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">lastLoginAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">now</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="24-enums">2.4 enums<a class="headerlink" href="#24-enums" title="Permanent link">&para;</a></h3>
+<p><strong>역할</strong></p>
+<ul>
+<li>
+<p>도메인에서 사용하는 enum들을 모아두는 패키지</p>
+</li>
+<li>
+<p>DB/외부 입출력까지 고려한 변환 메서드 제공 추천</p>
+</li>
+</ul>
+<p><strong>예시</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">UserGender</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">MALE</span><span class="p">,</span><span class="w"> </span><span class="n">FEMALE</span><span class="p">,</span><span class="w"> </span><span class="n">UNKNOWN</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">UserGender</span><span class="w"> </span><span class="nf">fromString</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">values</span><span class="p">())</span>
+<span class="w">                     </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="na">name</span><span class="p">().</span><span class="na">equalsIgnoreCase</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+<span class="w">                     </span><span class="p">.</span><span class="na">findFirst</span><span class="p">()</span>
+<span class="w">                     </span><span class="p">.</span><span class="na">orElse</span><span class="p">(</span><span class="n">UNKNOWN</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">UserAuthProvider</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">LOCAL</span><span class="p">,</span><span class="w"> </span><span class="n">KAKAO</span><span class="p">,</span><span class="w"> </span><span class="n">GOOGLE</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">UserAuthProvider</span><span class="w"> </span><span class="nf">fromValue</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">values</span><span class="p">())</span>
+<span class="w">                     </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="na">name</span><span class="p">().</span><span class="na">equalsIgnoreCase</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+<span class="w">                     </span><span class="p">.</span><span class="na">findFirst</span><span class="p">()</span>
+<span class="w">                     </span><span class="p">.</span><span class="na">orElse</span><span class="p">(</span><span class="n">LOCAL</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="25-repository">2.5 repository (인터페이스)<a class="headerlink" href="#25-repository" title="Permanent link">&para;</a></h3>
+<p><strong>역할</strong></p>
+<ul>
+<li>
+<p>도메인/서비스에서 사용하는 저장소 추상화</p>
+</li>
+<li>
+<p>구현은 infra 레이어에서 담당</p>
+</li>
+</ul>
+<p><strong>규칙</strong></p>
+<ul>
+<li>
+<p>메서드 시그니처는 <strong>도메인 모델 / ID / Value Object</strong>만 사용</p>
+</li>
+<li>
+<p><code>UserEntity</code>, <code>UserMapper</code> 같은 infra 타입은 등장하면 안 된다.</p>
+</li>
+</ul>
+<p><strong>예시</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">UserRepository</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Long</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">UserModel</span><span class="w"> </span><span class="n">user</span><span class="p">);</span><span class="w"> </span><span class="c1">// insert or update</span>
+<span class="w">    </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">UserModel</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">userId</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">UserModel</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLoginId</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">loginId</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="26-service">2.6 service<a class="headerlink" href="#26-service" title="Permanent link">&para;</a></h3>
+<p><strong>역할</strong></p>
+<ul>
+<li>
+<p>유즈케이스 구현 (비즈니스 규칙 + Repository 호출)</p>
+</li>
+<li>
+<p>API / 다른 서비스에서 호출하는 진입점</p>
+</li>
+</ul>
+<p><strong>인터페이스 예시</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">updateUserProfile</span><span class="p">(</span><span class="n">UpdateUserProfileCommand</span><span class="w"> </span><span class="n">command</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">softDeleteUser</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">userId</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">UserModel</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findUserById</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">userId</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">UserModel</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getUserProfileForViewer</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">viewerUserId</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">targetUserId</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><strong>구현 예시</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@RequiredArgsConstructor</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserServiceImpl</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">UserService</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">UserRepository</span><span class="w"> </span><span class="n">userRepository</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">updateUserProfile</span><span class="p">(</span><span class="n">UpdateUserProfileCommand</span><span class="w"> </span><span class="n">cmd</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">userOpt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">cmd</span><span class="p">.</span><span class="na">userId</span><span class="p">());</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">userOpt</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">fail</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">NotFoundError</span><span class="p">(</span><span class="s">&quot;userId&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cmd</span><span class="p">.</span><span class="na">userId</span><span class="p">()));</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userOpt</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+<span class="w">        </span><span class="n">user</span><span class="p">.</span><span class="na">setName</span><span class="p">(</span><span class="n">cmd</span><span class="p">.</span><span class="na">name</span><span class="p">());</span>
+<span class="w">        </span><span class="n">user</span><span class="p">.</span><span class="na">setEmail</span><span class="p">(</span><span class="n">cmd</span><span class="p">.</span><span class="na">email</span><span class="p">());</span>
+<span class="w">        </span><span class="c1">// TODO: 필요 시 도메인 메서드로 변경</span>
+
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">savedId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">user</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">ok</span><span class="p">(</span><span class="n">savedId</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Result</span><span class="o">&lt;</span><span class="n">UserModel</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getUserProfileForViewer</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">viewerUserId</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">targetUserId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">userOpt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">targetUserId</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">userOpt</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">fail</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">NotFoundError</span><span class="p">(</span><span class="s">&quot;userId&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">targetUserId</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">targetUser</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userOpt</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+
+<span class="w">        </span><span class="c1">// 자기 자신은 항상 허용</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Objects</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">viewerUserId</span><span class="p">,</span><span class="w"> </span><span class="n">targetUser</span><span class="p">.</span><span class="na">getId</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">ok</span><span class="p">(</span><span class="n">targetUser</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// 프로필 공개 설정 검사 (PRIVATE 등)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">targetUser</span><span class="p">.</span><span class="na">getVisitVisibilitySetting</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">UserProfileVisitVisibility</span><span class="p">.</span><span class="na">PRIVATE</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">fail</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ForbiddenError</span><span class="p">(</span><span class="s">&quot;userId&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">targetUser</span><span class="p">.</span><span class="na">getId</span><span class="p">()));</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">ok</span><span class="p">(</span><span class="n">targetUser</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="3-infra">3. INFRA 레이어<a class="headerlink" href="#3-infra" title="Permanent link">&para;</a></h2>
+<p>패키지 예시:</p>
+<div class="highlight"><pre><span></span><code>com.ssafy.sulmap.infra
+ ├─ external
+ ├─ mapper
+ ├─ model
+ └─ repository
+</code></pre></div>
+<h3 id="31-external">3.1 external<a class="headerlink" href="#31-external" title="Permanent link">&para;</a></h3>
+<p><strong>역할</strong></p>
+<ul>
+<li>
+<p>DB가 아닌 외부 시스템과 통신하는 어댑터</p>
+<ul>
+<li>
+<p>외부 REST API</p>
+</li>
+<li>
+<p>Redis</p>
+</li>
+<li>
+<p>Kafka</p>
+</li>
+<li>
+<p>Elasticsearch 등</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>예시 구조</strong></p>
+<div class="highlight"><pre><span></span><code>infra/external/kakao
+ ├─ KakaoMapClient.java
+ └─ KakaoMapResponseDto.java
+</code></pre></div>
+<hr />
+<h3 id="32-mapper-mybatis">3.2 mapper (MyBatis)<a class="headerlink" href="#32-mapper-mybatis" title="Permanent link">&para;</a></h3>
+<p><strong>역할</strong></p>
+<ul>
+<li>
+<p>MyBatis에서 사용하는 Mapper 인터페이스</p>
+</li>
+<li>
+<p>SQL 호출을 담당 (XML or Annotation 기반)</p>
+</li>
+</ul>
+<p><strong>예시</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Mapper</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">UserMapper</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">UserEntity</span><span class="w"> </span><span class="nf">selectById</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UserEntity</span><span class="w"> </span><span class="nf">selectByLoginId</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">loginId</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">insert</span><span class="p">(</span><span class="n">UserEntity</span><span class="w"> </span><span class="n">user</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">UserEntity</span><span class="w"> </span><span class="n">user</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>XML 예시:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;mapper</span><span class="w"> </span><span class="na">namespace=</span><span class="s">&quot;com.ssafy.sulmap.infra.mapper.UserMapper&quot;</span><span class="nt">&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;resultMap</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;UserResultMap&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;com.ssafy.sulmap.infra.model.UserEntity&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;id</span><span class="w"> </span><span class="na">property=</span><span class="s">&quot;id&quot;</span><span class="w"> </span><span class="na">column=</span><span class="s">&quot;id&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="cm">&lt;!-- 생략... --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/resultMap&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;sql</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;BaseColumns&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>id,<span class="w"> </span>login_id,<span class="w"> </span>password_hash,<span class="w"> </span>name,<span class="w"> </span>phone,<span class="w"> </span>email,<span class="w"> </span>birth_date,<span class="w"> </span>address,<span class="w"> </span>gender,
+<span class="w">        </span>profile_image_url,<span class="w"> </span>auth_provider,<span class="w"> </span>provider_id,<span class="w"> </span>status,<span class="w"> </span>visit_visibility_setting,
+<span class="w">        </span>last_login_at,<span class="w"> </span>created_at,<span class="w"> </span>updated_at,<span class="w"> </span>deleted_at
+<span class="w">    </span><span class="nt">&lt;/sql&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;select</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;selectById&quot;</span><span class="w"> </span><span class="na">parameterType=</span><span class="s">&quot;long&quot;</span><span class="w"> </span><span class="na">resultMap=</span><span class="s">&quot;UserResultMap&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>SELECT
+<span class="w">        </span><span class="nt">&lt;include</span><span class="w"> </span><span class="na">refid=</span><span class="s">&quot;BaseColumns&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span>FROM<span class="w"> </span>users
+<span class="w">        </span>WHERE<span class="w"> </span>id<span class="w"> </span>=<span class="w"> </span>#{id}
+<span class="w">          </span>AND<span class="w"> </span>deleted_at<span class="w"> </span>IS<span class="w"> </span>NULL
+<span class="w">    </span><span class="nt">&lt;/select&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;insert</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;insert&quot;</span>
+<span class="w">            </span><span class="na">parameterType=</span><span class="s">&quot;com.ssafy.sulmap.infra.model.UserEntity&quot;</span>
+<span class="w">            </span><span class="na">useGeneratedKeys=</span><span class="s">&quot;true&quot;</span>
+<span class="w">            </span><span class="na">keyProperty=</span><span class="s">&quot;id&quot;</span>
+<span class="w">            </span><span class="na">keyColumn=</span><span class="s">&quot;id&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>INSERT<span class="w"> </span>INTO<span class="w"> </span>users<span class="w"> </span>(...)
+<span class="w">        </span>VALUES<span class="w"> </span>(...)
+<span class="w">    </span><span class="nt">&lt;/insert&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;update</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;update&quot;</span><span class="w"> </span><span class="na">parameterType=</span><span class="s">&quot;com.ssafy.sulmap.infra.model.UserEntity&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>UPDATE<span class="w"> </span>users
+<span class="w">        </span><span class="nt">&lt;set&gt;</span>
+<span class="w">            </span><span class="cm">&lt;!-- 필드들... --&gt;</span>
+<span class="w">            </span>updated_at<span class="w"> </span>=<span class="w"> </span>NOW()
+<span class="w">        </span><span class="nt">&lt;/set&gt;</span>
+<span class="w">        </span>WHERE<span class="w"> </span>id<span class="w"> </span>=<span class="w"> </span>#{id}
+<span class="w">          </span>AND<span class="w"> </span>deleted_at<span class="w"> </span>IS<span class="w"> </span>NULL
+<span class="w">    </span><span class="nt">&lt;/update&gt;</span>
+
+<span class="nt">&lt;/mapper&gt;</span>
+</code></pre></div>
+<hr />
+<h3 id="33-model-entity">3.3 model (Entity)<a class="headerlink" href="#33-model-entity" title="Permanent link">&para;</a></h3>
+<p><strong>역할</strong></p>
+<ul>
+<li>
+<p>DB 테이블과 매핑되는 Entity / Record</p>
+</li>
+<li>
+<p>MyBatis Mapper와 함께 사용</p>
+</li>
+</ul>
+<p><strong>예시</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Data</span>
+<span class="nd">@Builder</span>
+<span class="nd">@NoArgsConstructor</span>
+<span class="nd">@AllArgsConstructor</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserEntity</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">loginId</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">passwordHash</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">email</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">phone</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">address</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="n">birthday</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">gender</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">profileImageUrl</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">authProvider</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">providerId</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">status</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">visitVisibilitySetting</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="n">createdAt</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="n">updatedAt</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="n">deletedAt</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Date</span><span class="w"> </span><span class="n">lastLoginAt</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">UserEntity</span><span class="w"> </span><span class="nf">fromUserModel</span><span class="p">(</span><span class="n">UserModel</span><span class="w"> </span><span class="n">userModel</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">UserEntity</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">id</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getId</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">loginId</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getLoginId</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">passwordHash</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getPasswordHash</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">name</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getName</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">email</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getEmail</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">phone</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getPhone</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">address</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getAddress</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">birthday</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getBirthday</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">gender</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getGender</span><span class="p">().</span><span class="na">toString</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">profileImageUrl</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getProfileImageUrl</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">authProvider</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getAuthProvider</span><span class="p">().</span><span class="na">toString</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">providerId</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getProviderId</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">status</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getStatus</span><span class="p">().</span><span class="na">toString</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">visitVisibilitySetting</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getVisitVisibilitySetting</span><span class="p">().</span><span class="na">toString</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">createdAt</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getCreatedAt</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">updatedAt</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getUpdatedAt</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">deletedAt</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getDeletedAt</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">lastLoginAt</span><span class="p">(</span><span class="n">userModel</span><span class="p">.</span><span class="na">getLastLoginAt</span><span class="p">())</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">UserModel</span><span class="w"> </span><span class="nf">toUserModel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">UserModel</span><span class="p">.</span><span class="na">builder</span><span class="p">()</span>
+<span class="w">                </span><span class="p">.</span><span class="na">id</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">loginId</span><span class="p">(</span><span class="n">loginId</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">passwordHash</span><span class="p">(</span><span class="n">passwordHash</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">email</span><span class="p">(</span><span class="n">email</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">phone</span><span class="p">(</span><span class="n">phone</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">address</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">birthday</span><span class="p">(</span><span class="n">birthday</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">gender</span><span class="p">(</span><span class="n">UserGender</span><span class="p">.</span><span class="na">fromString</span><span class="p">(</span><span class="n">gender</span><span class="p">))</span>
+<span class="w">                </span><span class="p">.</span><span class="na">profileImageUrl</span><span class="p">(</span><span class="n">profileImageUrl</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">authProvider</span><span class="p">(</span><span class="n">UserAuthProvider</span><span class="p">.</span><span class="na">fromValue</span><span class="p">(</span><span class="n">authProvider</span><span class="p">))</span>
+<span class="w">                </span><span class="p">.</span><span class="na">providerId</span><span class="p">(</span><span class="n">providerId</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">status</span><span class="p">(</span><span class="n">UserStatus</span><span class="p">.</span><span class="na">fromString</span><span class="p">(</span><span class="n">status</span><span class="p">))</span>
+<span class="w">                </span><span class="p">.</span><span class="na">visitVisibilitySetting</span><span class="p">(</span><span class="n">UserProfileVisitVisibility</span><span class="p">.</span><span class="na">fromString</span><span class="p">(</span><span class="n">visitVisibilitySetting</span><span class="p">))</span>
+<span class="w">                </span><span class="p">.</span><span class="na">createdAt</span><span class="p">(</span><span class="n">createdAt</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">updatedAt</span><span class="p">(</span><span class="n">updatedAt</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">deletedAt</span><span class="p">(</span><span class="n">deletedAt</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">lastLoginAt</span><span class="p">(</span><span class="n">lastLoginAt</span><span class="p">)</span>
+<span class="w">                </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h3 id="34-repository">3.4 repository (구현체)<a class="headerlink" href="#34-repository" title="Permanent link">&para;</a></h3>
+<p><strong>역할</strong></p>
+<ul>
+<li>
+<p>core <code>Repository</code> 인터페이스들의 구현체</p>
+</li>
+<li>
+<p>Entity ↔ Model 변환 + Mapper 호출 담당</p>
+</li>
+</ul>
+<p><strong>예시</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@Repository</span>
+<span class="nd">@RequiredArgsConstructor</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserRepositoryImpl</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">UserRepository</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">UserMapper</span><span class="w"> </span><span class="n">userMapper</span><span class="p">;</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="nd">@Transactional</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Long</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="n">UserModel</span><span class="w"> </span><span class="n">user</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserEntity</span><span class="p">.</span><span class="na">fromUserModel</span><span class="p">(</span><span class="n">user</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="na">getId</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">userMapper</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">entity</span><span class="p">);</span><span class="w">    </span><span class="c1">// PK가 entity.id 에 세팅됨</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">userMapper</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">entity</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">entity</span><span class="p">.</span><span class="na">getId</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">UserModel</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findById</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">userId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">UserEntity</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userMapper</span><span class="p">.</span><span class="na">selectById</span><span class="p">(</span><span class="n">userId</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Optional</span><span class="p">.</span><span class="na">ofNullable</span><span class="p">(</span><span class="n">entity</span><span class="p">).</span><span class="na">map</span><span class="p">(</span><span class="n">UserEntity</span><span class="p">::</span><span class="n">toUserModel</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nd">@Override</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Optional</span><span class="o">&lt;</span><span class="n">UserModel</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">findByLoginId</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">userLoginId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">UserEntity</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userMapper</span><span class="p">.</span><span class="na">selectByLoginId</span><span class="p">(</span><span class="n">userLoginId</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Optional</span><span class="p">.</span><span class="na">ofNullable</span><span class="p">(</span><span class="n">entity</span><span class="p">).</span><span class="na">map</span><span class="p">(</span><span class="n">UserEntity</span><span class="p">::</span><span class="n">toUserModel</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="4">4. 새 기능 추가 시 추천 작업 순서<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>도메인/유즈케이스 설계 (core)</strong></p>
+<ul>
+<li>
+<p>어떤 도메인 모델이 필요한지 (<code>User</code>, <code>Bar</code>, <code>VisitHistory</code> 등)</p>
+</li>
+<li>
+<p>Command / Query / Service 메서드 시그니처 정의</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Repository 인터페이스(core) 정의/수정</strong></p>
+<ul>
+<li>도메인이 필요로 하는 저장/조회 메서드 설계</li>
+</ul>
+</li>
+<li>
+<p><strong>infra 구현</strong></p>
+<ul>
+<li>
+<p>Entity, Mapper(MyBatis XML), RepositoryImpl 구현</p>
+</li>
+<li>
+<p>Entity ↔ Model 매핑</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>api 구현</strong></p>
+<ul>
+<li>
+<p>Request/Response DTO 설계</p>
+</li>
+<li>
+<p>Controller 추가/수정</p>
+</li>
+<li>
+<p>Security 설정이 필요하면 security/config 수정</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="5">5. 네이밍 컨벤션 요약<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Controller: <code>XxxController</code></p>
+</li>
+<li>
+<p>Request DTO: <code>XxxRequest</code></p>
+</li>
+<li>
+<p>Response DTO: <code>XxxResponse</code></p>
+</li>
+<li>
+<p>Command: <code>XxxCommand</code></p>
+</li>
+<li>
+<p>Query: <code>XxxQuery</code></p>
+</li>
+<li>
+<p>도메인 모델: <code>UserModel</code>, <code>BarModel</code>, <code>VisitHistoryModel</code> …</p>
+</li>
+<li>
+<p>Repository 인터페이스(core): <code>XxxRepository</code></p>
+</li>
+<li>
+<p>Repository 구현체(infra): <code>XxxRepositoryImpl</code></p>
+</li>
+<li>
+<p>Entity(infra): <code>XxxEntity</code></p>
+</li>
+<li>
+<p>외부 API Client(infra/external): <code>XxxClient</code></p>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="../../javascripts/mermaid.mjs" type="module"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+        <script src="../../assets/javascripts/panzoom.min.js"></script>
+      
+        <script src="../../assets/javascripts/zoompan.js"></script>
+      
+    
+  </body>
+</html>
